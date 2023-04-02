@@ -1,0 +1,10 @@
+black
+beautifulsoup4
+flask
+requests
+pydantic
+srtools
+pymongo
+python-dotenv
+flask-cors
+python-json-logger
