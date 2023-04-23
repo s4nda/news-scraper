@@ -8,6 +8,8 @@ To use this script, you will need to have Python 3 installed on your machine. On
 
 `git clone https://github.com/s4nda/news-scraper`
 
+`pip install -r requirements.txt`
+
 ## Usage
 
 To run the script, simply run the following command in your terminal:
@@ -16,8 +18,6 @@ To run the script, simply run the following command in your terminal:
 
 This will start a Flask server on your local machine, which you can use to query the scraped news articles.
 
-## Requirements
-
 To run local mongodb instance:
 
 `docker-compose up`
@@ -25,10 +25,10 @@ To run local mongodb instance:
 ## Environment variables
 
 | Name            |                    Description                     | Required |
-| :-------------- | :------------------------------------------------: | ------: |
-| MONGODB_URI     |         The URI for your MongoDB database.         |     yes |
-| MONGODB_DB_NAME |    The name of the database to use in MongoDB.     |     yes |
-| JWT_SECRET_KEY  | The secret key used for JSON Web Token encryption. |     yes |
+| :-------------- | :------------------------------------------------: | -------: |
+| MONGODB_URI     |         The URI for your MongoDB database.         |      yes |
+| MONGODB_DB_NAME |    The name of the database to use in MongoDB.     |      yes |
+| JWT_SECRET_KEY  | The secret key used for JSON Web Token encryption. |      yes |
 
 ### Tools
 
