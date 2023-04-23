@@ -24,7 +24,7 @@ To run local mongodb instance:
 
 ## Environment variables
 
-| Name            |                    Description                     | Requred |
+| Name            |                    Description                     | Required |
 | :-------------- | :------------------------------------------------: | ------: |
 | MONGODB_URI     |         The URI for your MongoDB database.         |     yes |
 | MONGODB_DB_NAME |    The name of the database to use in MongoDB.     |     yes |
