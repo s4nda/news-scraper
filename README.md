@@ -10,6 +10,11 @@ To use this script, you will need to have Python 3 installed on your machine. On
 
 `pip install -r requirements.txt`
 
+To run local mongodb instance:
+
+`docker-compose up`
+
+
 ## Usage
 
 To run the script, simply run the following command in your terminal:
@@ -17,8 +22,6 @@ To run the script, simply run the following command in your terminal:
 `python app.py`
 
 This will start a Flask server on your local machine, which you can use to query the scraped news articles.
-
-To run local mongodb instance:
 
 `docker-compose up`
 
