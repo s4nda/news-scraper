@@ -6,7 +6,7 @@ This project is a script that scrapes news articles from a university website ev
 
 To use this script, you will need to have Python 3 installed on your machine. Once you have Python installed, you can clone this repository to your local machine:
 
-`git clone https://github.com/your-username/your-repo.git`
+`git clone https://github.com/s4nda/news-scraper`
 
 ## Usage
 
