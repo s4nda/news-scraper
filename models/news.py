@@ -1,6 +1,6 @@
 from srtools import cyrillic_to_latin
 from utils.utils import month_to_int
-from pydantic import BaseModel, validator, Extra
+from pydantic import BaseModel, validator
 from utils.db import get_db_client
 import hashlib
 import datetime
@@ -16,7 +16,7 @@ class NewsItem(BaseModel):
     date: datetime.date
     attachment: str | None = None
     category_id: int
-    category: str
+    institution_id: int
 
     @validator("date", pre=True)
     def validate_date(cls, val):
@@ -35,14 +35,9 @@ class NewsItem(BaseModel):
         val = cyrillic_to_latin(val)
         return val
 
-    @validator("category")
-    def validate_category(cls, val):
-        val = cyrillic_to_latin(val)
-        return val
-
     @property
     def sha256_hash(self):
-        joined_str = f"{self.title}-{self.body}"
+        joined_str = f"{self.title}-{self.body}-{self.category_id}-{self.date}"
         hashed_str = hashlib.sha256(joined_str.encode()).hexdigest()
         return hashed_str
 
@@ -51,7 +46,3 @@ class NewsItem(BaseModel):
         top["sha256_hash"] = self.sha256_hash
         top["date"] = time.mktime(self.date.timetuple())
         return top
-
-
-if __name__ == "__main__":
-    pass

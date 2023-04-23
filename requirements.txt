@@ -8,3 +8,5 @@ pymongo
 python-dotenv
 flask-cors
 python-json-logger
+argon2-cffi
+pyjwt

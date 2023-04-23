@@ -1,11 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
-from models.news_model import NewsItem
+from models.news import NewsItem
 from srtools import cyrillic_to_latin
-from utils.db import get_db_client
-from utils.exceptions import ResourceAlreadyExists
-
-db = get_db_client()
+from config import Config
 
 
 class FilozofskiScraper:
@@ -43,6 +40,7 @@ class FilozofskiScraper:
         news = []
         for child in children:
             item = {}
+            item["institution_id"] = Config.filozofski_id
             item["category_id"] = category_id
             item["category"] = category
             parent = child.find_parent("tr")
@@ -66,20 +64,6 @@ class FilozofskiScraper:
                 news.append(news_item)
         return news
 
-    def count_pages(self, category_id=None):
-        pg = requests.get("https://www.f.bg.ac.rs/vesti", params={"IDO": category_id})
-        txt = pg.text
-        tree = BeautifulSoup(txt, "lxml")
-        children = tree.find_all(class_="broj-strane")
-        pages = []
-        for child in children:
-            page = child.find("a")
-            if page:
-                href = page.attrs.get("href")
-                href = href.split("=")[2]
-                pages.append(href)
-        return len(pages) + 1
-
     def parse(self, start_page=0, end_page=0, category_id=None) -> list[NewsItem]:
         news_items = []
         for i in range(start_page, end_page):
@@ -88,17 +72,3 @@ class FilozofskiScraper:
             if self.parse_page == []:
                 break
         return news_items
-
-    def write_to_mongo(self, parsed_page):
-        for item in parsed_page:
-            item = item.dict()
-            found_item = db.filozofski.find_one({"sha256_hash": item["sha256_hash"]})
-            if found_item:
-                raise ResourceAlreadyExists("News Item Already Exists")
-            item_to_db = db.filozofski.insert_one(item)
-        return item_to_db  # type: ignore
-
-
-if __name__ == "__main__":
-    scrappy = FilozofskiScraper()
-    pass
