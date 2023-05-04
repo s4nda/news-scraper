@@ -15,5 +15,8 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Setup PYTHONPATH
+        id: first_update_step
+        run: PYTHONPATH=$GITHUB_WORKSPACE
       - name: Run script
         run: python scripts/parse_filozofski.py # Replace this with your script file path
