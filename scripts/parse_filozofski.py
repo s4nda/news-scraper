@@ -26,7 +26,6 @@ if __name__ == "__main__":
             except Exception as e:
                 log.error(
                     f"An error occurred while inserting news item for category {i}",
-                    exc_info=True,
                 )
         if len(fresh_news):
             found_subs = db.subs.find({"category_id": i, "institution_id": 1})
