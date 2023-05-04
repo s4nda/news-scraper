@@ -34,5 +34,5 @@ This will start a Flask server on your local machine, which you can use to query
 
 - Flask
 - BeautifulSoup
-- MongoDB
+- MongoDB 
 - Pydantic

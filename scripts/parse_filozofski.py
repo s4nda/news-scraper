@@ -1,7 +1,6 @@
 from scraper.filozofski_scraper import FilozofskiScraper
 from utils.db import get_db_client
 from utils.logger import log
-
 if __name__ == "__main__":
     db = get_db_client()
     scrappy = FilozofskiScraper()
