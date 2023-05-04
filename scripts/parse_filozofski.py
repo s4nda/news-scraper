@@ -1,6 +1,7 @@
 from scraper.filozofski_scraper import FilozofskiScraper
 from utils.db import get_db_client
 from utils.logger import log
+
 if __name__ == "__main__":
     db = get_db_client()
     scrappy = FilozofskiScraper()
@@ -9,9 +10,7 @@ if __name__ == "__main__":
         try:
             news = scrappy.parse(start_page=0, end_page=2, category_id=i)
         except Exception as e:
-            log.error(
-                f"An error occurred while parsing news for category {i}", exc_info=True
-            )
+            log.error(f"An error occurred while parsing news for category {i}")
             continue
         fresh_news = []
         for item in news:
@@ -38,5 +37,3 @@ if __name__ == "__main__":
             for user in subscribers:
                 log.info(f"sending email to: {user['email']}")
         log.info(f"Novih vesti: {len(fresh_news)}")
-
-

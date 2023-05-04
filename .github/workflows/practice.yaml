@@ -1,4 +1,4 @@
-name: My Script
+name: Fetch New Data
 
 on:
   schedule:
@@ -16,4 +16,4 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run script
-        run: python scripts/test_script.py # Replace this with your script file path
+        run: python scripts/parse_filozofski.py # Replace this with your script file path
