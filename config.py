@@ -17,4 +17,6 @@ class Config:
     log_level = int(os.getenv("LOG_LEVEL", "40"))
 
     # Institution IDs
-    filozofski_id = 1
+    bg_filozofski_id = 1
+    ns_filozofski_id = 2
+

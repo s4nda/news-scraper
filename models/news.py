@@ -1,6 +1,7 @@
 from srtools import cyrillic_to_latin
 from utils.utils import month_to_int
 from pydantic import BaseModel, validator
+from typing import Optional
 from utils.db import get_db_client
 import hashlib
 import datetime
@@ -15,12 +16,18 @@ class NewsItem(BaseModel):
     body: str
     date: datetime.date
     attachment: str | None = None
-    category_id: int
+    category_id: Optional[int]
     institution_id: int
 
     @validator("date", pre=True)
     def validate_date(cls, val):
-        day, month, year = val.split("\xa0")
+        val = val.lower()
+        if "\xa0" in val:
+            day, month, year = val.split("\xa0")
+            month = month_to_int(month)
+            d = datetime.date(int(year), month, int(day))
+            return d
+        day, month, year = val.split(" ")
         month = month_to_int(month)
         d = datetime.date(int(year), month, int(day))
         return d

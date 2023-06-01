@@ -40,7 +40,7 @@ class FilozofskiScraper:
         news = []
         for child in children:
             item = {}
-            item["institution_id"] = Config.filozofski_id
+            item["institution_id"] = Config.bg_filozofski_id
             item["category_id"] = category_id
             item["category"] = category
             parent = child.find_parent("tr")
