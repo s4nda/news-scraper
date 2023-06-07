@@ -123,10 +123,3 @@ class NSFilozofski(BaseScraper):
         return news
 
 
-bg = BGFilozofski()
-ns = NSFilozofski()
-
-# scraper.get_page()
-
-res = ns.parse(end_page=5, category_id=3)
-print(len(res))
